@@ -1,0 +1,73 @@
+body {
+	font-family: Arial, sans-serif;
+	margin: 0;
+	padding: 0;
+}
+
+header {
+	background-color: #333;
+	color: #fff;
+	padding: 20px;
+}
+
+nav ul {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+
+nav li {
+	display: inline-block;
+	margin-right: 20px;
+}
+
+nav a {
+	color: #fff;
+	text-decoration: none;
+}
+
+main {
+	margin: 20px;
+}
+
+section {
+	margin-bottom: 40px;
+}
+
+h1, h2, h3, h4 {
+	font-weight: normal;
+}
+
+#hero {
+	background-image: url('../img/hero.jpg');
+	background-size: cover;
+	background-position: center;
+	color: #fff;
+	padding: 100px;
+	text-align: center;
+}
+
+#portfolio {
+	background-color: #f2f2f2;
+	padding: 20px;
+}
+
+.categories {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+
+.categories li {
+	display: inline-block;
+	margin-right: 20px;
+}
+
+.categories a {
+	color: #333;
+	text-decoration: none;
+}
+
+.categories a:hover {
+	color: #666;
+}
