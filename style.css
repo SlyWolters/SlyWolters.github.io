@@ -1,0 +1,165 @@
+body {
+	font-family: 'Times New Roman', Times, serif;
+	margin: 0;
+	padding: 0;
+}
+
+header {
+	background-color: #333;
+	color: #fff;
+	padding: 20px;
+}
+
+nav ul {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+
+nav li {
+	display: inline-block;
+	margin-right: 20px;
+}
+
+nav a {
+	color: #fff;
+	text-decoration: none;
+}
+
+main {
+	margin: 20px;
+}
+
+section {
+	margin-bottom: 40px;
+}
+
+h1, h2 {
+	font-weight: normal;
+}
+
+h3, h4 {
+	font-weight: normal;
+}
+
+.grid-container {
+	display: grid;
+	grid-template-columns: repeat(4, 1fr);
+	grid-gap: 20px;
+}
+  
+.grid-item {
+	border: 3px solid #ccc;
+	padding: 0px;
+	text-align: center;
+}
+  
+.grid-item img {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+}
+
+.categories {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+
+.categories li {
+	display: inline-block;
+	margin-right: 20px;
+}
+
+.categories a {
+	color: #333;
+	text-decoration: none;
+}
+
+.categories a:hover {
+	color: #666;
+}
+
+  
+#hero {
+	background-image: url('img/hero.jpg');
+	background-size: cover;
+	background-position: center;
+	color: #fff;
+	padding: 13%;
+	text-align: center;
+}
+#costumes {
+	background-image: url('img/Kiss\ kostymer.jpeg');
+	background-size: cover;
+	background-position: center;
+	color: #fff;
+	padding: 13%;
+	text-align: center;
+	font-size: 50px;
+}
+#about {
+	background-color: #f2f2f2;
+	padding: 20px;
+}
+
+#services {
+	background-color: #e6e6e6;
+	padding: 20px;
+}
+
+#portfolio {
+	background-color: #f2f2f2;
+	padding: 20px;
+}
+
+#grid-container {
+  display: grid;
+  grid-template-columns: 10% 10% 10% 10%;
+  grid-template-rows: 10% 10%;
+}
+
+#grid-container > div {
+  background-color: rgba(255, 255, 255, 0.8);
+  text-align: center;
+  padding: 20px 0;
+  font-size: 30px;
+  position: relative;
+}
+
+#grid-container > div:hover {
+  background-color: rgba(255, 255, 255, 1);
+}
+
+#grid-container > div:hover::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(255, 255, 255, 0.5);
+  z-index: -1;
+}
+
+#grid-container > div:hover > a {
+  color: blue;
+  cursor: pointer;
+}
+
+#contact {
+	background-color: #e6e6e6;
+	padding: 20px;
+}
+
+#name {
+	text-align: center;
+	font-size: 25px;
+}
+
+footer {
+	background-color: #333;
+	color: #fff;
+	padding: 20px;
+	text-align: center;
+}
