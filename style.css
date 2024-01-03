@@ -49,6 +49,16 @@ h1, h2 {
 	font-weight: normal;
 }
 
+
+.grid-item-text {
+	background-color: rgba(255, 255, 255, 0.8);
+	color: rgb(191, 191, 191);
+	text-align: center;
+	padding: 10px 10px;
+	font-size: 30px;
+}
+
+
 .grid-container {
 	display: grid;
 	grid-template-columns: repeat(4, 1fr);
@@ -67,6 +77,8 @@ h1, h2 {
 .grid-item {
 	padding: 10px;
 	text-align: center;
+	background-color: rgba(255, 255, 255, 0.8);
+    text-align: center;
 }
   
 .grid-item img {
@@ -209,32 +221,32 @@ h1, h2 {
 
 
 						
-						.grid-item {
-							position: relative;
-						}
-						
-						.gray-on-hover {
-							transition: filter 0.2s ease-in-out;
-						}
-						
-						.gray-on-hover:hover {
-							filter: grayscale(40%);
-						}
+		.grid-item {
+			position: relative;
+		}
+		
+		.gray-on-hover {
+			transition: filter 0.2s ease-in-out;
+		}
+		
+		.gray-on-hover:hover {
+			filter: grayscale(40%);
+		}
 
 
 
-						.grid-item-costume {
-							position: relative;
-						}
-						
-						.color-on-hover {
-							transition: filter 0.2s ease-in-out;
-						}
-						
-						.color-on-hover:hover {
-							filter: hue-rotate(35deg); /* Change the angle to adjust the color */
-						}
-  
+		.grid-item-costume {
+			position: relative;
+		}
+		
+		.color-on-hover {
+			transition: filter 0.2s ease-in-out;
+		}
+		
+		.color-on-hover:hover img {
+			filter: hue-rotate(35deg); /* Change the angle to adjust the color */
+		}
+
 
 
 
