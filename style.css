@@ -97,7 +97,7 @@ h3 {
 .grid-container-costume {
 	display: grid;
 	grid-template-columns: repeat(4, 1fr);
-	grid-template-rows: 20px, 70px;
+	grid-template-rows: 20px, 70px 20px, 70px 20px, 70px 20px, 70px;
 	grid-gap: 10px;
 	padding: 5px;
 }
@@ -163,10 +163,20 @@ h3 {
 			transform: scale(2.1); /* Adjust the scale factor for desired zoom level */
 		}
 
+		.grid-item-costume-text {
+	background-color: rgba(255, 255, 255, 0.8);
+	color: rgb(191, 191, 191);
+	grid-template-rows: repeat(4, 50px); 
+	text-align: center;
+	padding: 10px;
+	font-size: 30px;
+  }
+
+
 		.grid-container-embroidery {
 			display: grid;
 			grid-template-columns: repeat(4, 1fr);
-			grid-template-rows: 35% 35%;
+			grid-template-rows: 280px 280px 280px;
 			grid-gap: 10px;
 			padding: 5px;
 		}
