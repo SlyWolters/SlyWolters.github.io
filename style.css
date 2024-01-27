@@ -49,20 +49,17 @@ h1, h2 {
 	font-weight: normal;
 }
 
-
-.grid-item-text {
-	background-color: rgba(255, 255, 255, 0.8);
-	color: rgb(191, 191, 191);
-	text-align: center;
-	padding: 10px 10px;
-	font-size: 30px;
+h3 {
+  font-weight: bold;
+  font-family: Georgia, serif; /* Use Georgia as the font family with a generic serif fallback */
+  color: rgb(209, 208, 208);
+  text-shadow: -1px -1px 0 #9e9d9d; 
 }
-
 
 .grid-container {
 	display: grid;
 	grid-template-columns: repeat(4, 1fr);
-	grid-template-rows: 20% 6% 20% 6% 20% 6% 20% 6%;
+	grid-template-rows: 20% 6% 20% 6% 20% 6% 20% 6% 20% 6%;
 	grid-gap: 10px;
 	padding: 5px;
 } 
@@ -73,6 +70,15 @@ h1, h2 {
   padding: 10px 10px;
   font-size: 30px;
 }
+
+.grid-item-text {
+	background-color: rgba(255, 255, 255, 0.8);
+	color: rgb(191, 191, 191);
+	grid-template-rows: repeat(4, 50px); 
+	text-align: center;
+	padding: 10px;
+	font-size: 30px;
+  }
 
 .grid-item {
 	padding: 10px;
@@ -86,6 +92,43 @@ h1, h2 {
 	height: 100%;
 	object-fit: cover;
 }
+
+
+.grid-container-costume {
+	display: grid;
+	grid-template-columns: repeat(4, 1fr);
+	grid-template-rows: 20px, 70px;
+	grid-gap: 10px;
+	padding: 5px;
+}
+
+.grid-container-costume > div {
+	background-color: rgba(255, 255, 255, 0.8);
+	text-align: center;
+	padding: 10px 10px;
+	font-size: 30px;
+}
+
+.grid-item-costume {
+	padding: 10px;
+	text-align: center;
+}
+
+.grid-item-costume img {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+}
+
+.grid-item-costume-text {
+	background-color: rgba(255, 255, 255, 0.8);
+	color: rgb(191, 191, 191);
+	grid-template-rows: repeat(4, 50px); 
+	text-align: center;
+	padding: 10px;
+	font-size: 30px;
+  }
+
 		.grid-container-hat {
 			display: grid;
 			grid-template-columns: repeat(4, 1fr);
@@ -119,34 +162,6 @@ h1, h2 {
 		.grid-item-hat:hover img {
 			transform: scale(2.1); /* Adjust the scale factor for desired zoom level */
 		}
-
-
-
-.grid-container-costume {
-	display: grid;
-	grid-template-columns: repeat(4, 1fr);
-	grid-template-rows: 15% 4% 15% 4% 15% 4% 15% 4%;
-	grid-gap: 10px;
-	padding: 5px;
-}
-
-.grid-container-costume > div {
-	background-color: rgba(255, 255, 255, 0.8);
-	text-align: center;
-	padding: 10px 10px;
-	font-size: 30px;
-}
-
-.grid-item-costume {
-	padding: 10px;
-	text-align: center;
-}
-
-.grid-item-costume img {
-	width: 100%;
-	height: 100%;
-	object-fit: cover;
-}
 
 		.grid-container-embroidery {
 			display: grid;
