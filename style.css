@@ -46,7 +46,10 @@ section {
 }
 
 h1, h2 {
-	font-weight: normal;
+	font-weight: bold;
+	font-family: Georgia, serif; /* Use Georgia as the font family with a generic serif fallback */
+	color: rgb(63, 63, 63);
+	text-shadow: -1px -1px 0 #9e9d9d; 
 }
 
 h3 {
@@ -68,7 +71,7 @@ h3 {
   background-color: rgba(255, 255, 255, 0.8);
   text-align: center;
   padding: 10px 10px;
-  font-size: 30px;
+  font-size: 25px;
 }
 
 .grid-item-text {
@@ -77,7 +80,7 @@ h3 {
 	grid-template-rows: repeat(4, 50px); 
 	text-align: center;
 	padding: 10px;
-	font-size: 30px;
+	font-size: 25px;
   }
 
 .grid-item {
@@ -106,7 +109,7 @@ h3 {
 	background-color: rgba(255, 255, 255, 0.8);
 	text-align: center;
 	padding: 10px 10px;
-	font-size: 30px;
+	font-size: 25px;
 }
 
 .grid-item-costume {
@@ -126,13 +129,13 @@ h3 {
 	grid-template-rows: repeat(4, 50px); 
 	text-align: center;
 	padding: 10px;
-	font-size: 30px;
+	font-size: 5px;
   }
 
 		.grid-container-hat {
 			display: grid;
 			grid-template-columns: repeat(4, 1fr);
-			grid-template-rows: 200px, 200px, 200px, 200px, 200px, 200px,200px, 200px,;
+			grid-template-rows: 200px, 200px, 200px, 200px, 200px, 300px,;
 			grid-gap: 10px;
 			padding: 5px;
 		} 
@@ -141,7 +144,7 @@ h3 {
 		background-color: rgba(255, 255, 255, 0.8);
 		text-align: center;
 		padding: 10px 10px;
-		font-size: 30px;
+		font-size: 25px;
 		}
 
 		.grid-item-hat {
