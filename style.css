@@ -62,7 +62,7 @@ h3 {
 .grid-container {
 	display: grid;
 	grid-template-columns: repeat(4, 1fr);
-	grid-template-rows: 20% 6% 20% 6% 20% 6% 20% 6% 20% 6%;
+	grid-template-rows: 30% 10% 30% 10% 20% 6% 20% 6% 20% 6%;
 	grid-gap: 10px;
 	padding: 5px;
 } 
@@ -153,6 +153,13 @@ h3 {
 			position: relative;
 			overflow: hidden; /* Hide overflow to crop the image */
 		}
+	  
+		  .zoom-image {
+			width: 100%;
+			height: auto;
+			transition: transform 0.3s ease-in-out;
+		  }
+
 		
 		.grid-item-hat img {
 			width: 100%;
@@ -348,4 +355,37 @@ footer {
 	color: #fff;
 	padding: 20px;
 	text-align: center;
+	clear: both;
+}
+
+.cv-container {
+	position: relative;
+	overflow: hidden;
+	padding-right: 20px;
+}
+
+.cv-picture {
+	position: absolute;
+	top: 0;
+	right: 0;
+	padding: 20px;
+	width: 300px; /* Adjust the width as needed */
+	height: auto;
+	border: 2px solid #fff; /* Optional: add a border around the picture */
+	box-shadow: 0 0 5px rgba(0, 0, 0, 0.2); /* Optional: add a shadow effect */
+}
+
+.cv-text {
+	margin-right: 120px; /* Adjust the margin to leave space for the picture */
+	padding-right: 200px;
+	Padding-left: 20px;
+	width: 60%; /* Adjust the width as needed */
+    float: left;
+    margin-right: 20px; /* Adjust the margin as needed */
+}
+
+
+.servicesText {
+	margin-left: 20px;
+    margin-right: 300px; 
 }
