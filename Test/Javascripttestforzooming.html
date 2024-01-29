@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    .zoom-container {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .zoom-image {
+      width: 100%;
+      height: auto;
+      transition: transform 0.3s ease-in-out;
+    }
+  </style>
+</head>
+<body>
+
+<div class="zoom-container" onmousemove="zoomImage(event)">
+  <img src="../img/drawings.jpg" alt="Your Image" class="zoom-image" id="zoomImage">
+</div>
+
+<script>
+  function zoomImage(event) {
+    const container = document.querySelector('.zoom-container');
+    const image = document.getElementById('zoomImage');
+
+    const containerRect = container.getBoundingClientRect();
+    const mouseX = event.clientX - containerRect.left;
+    const mouseY = event.clientY - containerRect.top;
+
+    const percentX = mouseX / containerRect.width * 100;
+    const percentY = mouseY / containerRect.height * 100;
+
+    const translateX = (percentX - 50) * 2; // Adjust the multiplier for the desired zoom level
+    const translateY = (percentY - 50) * 2;
+
+    image.style.transform = `translate(${translateX}%, ${translateY}%) scale(2)`;
+  }
+</script>
+
+</body>
+</html>
+
