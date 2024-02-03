@@ -173,6 +173,41 @@ h3 {
 			transform: scale(2.1); /* Adjust the scale factor for desired zoom level */
 		}
 
+
+
+							.grid-container-sewingdetails {
+								display: grid;
+								grid-template-columns: repeat(4, 1fr);
+								grid-template-rows: 280px 100px 280px 100px 280px 100px;
+								grid-gap: 10px;
+								padding: 5px;
+							} 
+
+							.grid-container-sewingdetails2 {
+								display: grid;
+								grid-template-columns: repeat(4, 1fr);
+								grid-template-rows: 290px 80px 290px 80px 290px 80px;
+								grid-gap: 5px;
+								padding: 1px;
+							} 
+							
+							
+							.grid-item-sewingdetails2-text {
+								background-color: rgba(255, 255, 255, 0.8);
+								color: rgb(191, 191, 191);
+								grid-template-rows: repeat(4, 5%); 
+								text-align: center;
+								padding: -1%;
+								font-size: 22px;
+							  }
+
+
+
+
+
+
+
+
 		.grid-item-costume-text {
 	background-color: rgba(255, 255, 255, 0.8);
 	color: rgb(191, 191, 191);
