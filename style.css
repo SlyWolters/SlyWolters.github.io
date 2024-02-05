@@ -7,7 +7,7 @@ body {
 header {
 	background-color: #333;
 	color: #fff;
-	padding: 20px;
+	padding: 1.25em;
 }
 
 nav ul {
@@ -18,7 +18,7 @@ nav ul {
 
 nav li {
 	display: inline-block;
-	margin-right: 20px;
+	margin-right: 1.25em;
 }
 
 nav ul li a {
@@ -41,50 +41,34 @@ nav a {
 }
 
 main {
-	margin: 20px;
+	margin: 1.25em;
 }
 
 section {
-	margin-bottom: 40px;
-}
-
-h1,
-h2 {
-	font-weight: bold;
-	font-family: Georgia, serif;
-	/* Use Georgia as the font family with a generic serif fallback */
-	color: rgb(63, 63, 63);
-	text-shadow: -1px -1px 0 #9e9d9d;
-}
-
-h3 {
-	font-weight: bold;
-	font-family: Georgia, serif;
-	/* Use Georgia as the font family with a generic serif fallback */
-	color: rgb(209, 208, 208);
-	text-shadow: -1px -1px 0 #9e9d9d;
+	margin-bottom: 2.5em;
 }
 
 .grid-container {
 	display: grid;
 	grid-template-columns: repeat(4, 1fr);
-	grid-template-rows: 30% 10% ;
-	grid-gap: 10px;
-	padding: 5px;
-}
-
-.grid-container>div {
-	background-color: rgba(255, 255, 255, 0.8);
-	text-align: center;
-	padding: 10px 10px;
-	font-size: 25px;
+	grid-template-rows: 30%;
+	grid-gap: 0.625em;
+	padding: 0.313em;
 }
 
 .grid-item {
-	padding: 10px;
-	text-align: center;
+	padding-bottom: 3.4em;
+	font-size: 1.563em;
 	background-color: rgba(255, 255, 255, 0.8);
 	text-align: center;
+  	background-size: contain;
+}
+
+.grid-item h3{
+	font-weight: bold;
+	font-family: Georgia, serif;
+	color: rgb(209, 208, 208);
+	text-shadow: -0.063em -0.063em 0 #9e9d9d
 }
 
 .grid-item img {
@@ -124,7 +108,7 @@ h3 {
 
 .categories li {
 	display: inline-block;
-	margin-right: 20px;
+	margin-right: 1.25em;
 }
 
 .categories a {
@@ -152,38 +136,38 @@ h3 {
 	color: #fff;
 	padding: 13%;
 	text-align: center;
-	font-size: 50px;
+	font-size: 3.125em;
 }
 
 #about {
 	background-color: #f2f2f2;
-	padding: 20px;
+	padding: 1.25em;
 }
 
 #services {
 	background-color: #e6e6e6;
-	padding: 20px;
+	padding: 1.25em;
 }
 
 #portfolio {
 	background-color: #f2f2f2;
-	padding: 20px;
+	padding: 1.25em;
 }
 
 #contact {
 	background-color: #e6e6e6;
-	padding: 20px;
+	padding: 1.25em;
 }
 
 #name {
 	text-align: center;
-	font-size: 25px;
+	font-size: 1.563em;
 }
 
 footer {
 	background-color: #333;
 	color: #fff;
-	padding: 20px;
+	padding: 1.25em;
 	text-align: center;
 	clear: both;
 }
@@ -191,37 +175,37 @@ footer {
 .cv-container {
 	position: relative;
 	overflow: hidden;
-	padding-right: 20px;
+	padding-right: 1.25em;
 }
 
 .cv-picture {
 	position: absolute;
 	top: 0;
 	right: 0;
-	padding: 20px;
-	width: 300px;
+	padding: 1.25em;
+	width: 18.75em;
 	/* Adjust the width as needed */
 	height: auto;
-	border: 2px solid #fff;
+	border: 0.125em solid #fff;
 	/* Optional: add a border around the picture */
-	box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+	box-shadow: 0 0 0.313em rgba(0, 0, 0, 0.2);
 	/* Optional: add a shadow effect */
 }
 
 .cv-text {
-	margin-right: 120px;
+	margin-right: 7.5em;
 	/* Adjust the margin to leave space for the picture */
-	padding-right: 200px;
-	Padding-left: 20px;
+	padding-right: 12.5em;
+	Padding-left: 1.25em;
 	width: 60%;
 	/* Adjust the width as needed */
 	float: left;
-	margin-right: 20px;
+	margin-right: 1.25em;
 	/* Adjust the margin as needed */
 }
 
 
 .servicesText {
-	margin-left: 20px;
-	margin-right: 300px;
+	margin-left: 1.25em;
+	margin-right: 18.75em;
 }
