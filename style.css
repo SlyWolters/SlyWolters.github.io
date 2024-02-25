@@ -396,7 +396,7 @@ footer {
 .cv-container {
 	position: relative;
 	overflow: hidden;
-	padding-right: 20px;
+	padding: 20px;
 }
 
 .cv-picture {
