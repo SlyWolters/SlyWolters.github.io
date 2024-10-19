@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{.Category}} - {{.Item}} Images</title>
+    <link rel="stylesheet" href="/static/css/styles.css">
+</head>
+<body>
+    <h1>{{.Item}} Gallery</h1>
+    <button onclick="window.history.back()">Back to {{.Category}}</button>
+
+    <!-- Main section for the thumbnail and description -->
+    <div class="item-main">
+        <!-- Thumbnail image -->
+        <div class="thumbnail">
+            <img src="/static/images/{{.Category}}/{{.Item}}/thumbnail.jpg" alt="Thumbnail for {{.Item}}">
+        </div>
+
+        <!-- Description next to the thumbnail -->
+        <div class="description">
+            <p>{{.Description}}</p>
+        </div>
+    </div>
+
+    <!-- Gallery for additional images -->
+    <div class="gallery">
+        {{range .Images}}
+        <div>
+            <img src="/static/images/{{$.Category}}/{{$.Item}}/{{.}}" alt="{{.}}">
+        </div>
+        {{end}}
+    </div>
+</body>
+</html>

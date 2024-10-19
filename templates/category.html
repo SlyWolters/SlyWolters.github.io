@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{.Category}} Gallery</title>
+    <link rel="stylesheet" href="/static/css/styles.css">
+</head>
+<body>
+    <h1>{{.Category}} Gallery</h1>
+    <button onclick="window.history.back()">Back to Categories</button>
+    <div class="gallery">
+        {{range .Items}}
+        <div>
+            <!-- Display the item name above the image -->
+            <h2>{{.}}</h2>
+            <a href="/item/{{$.Category}}/{{.}}">
+                <img src="/static/images/{{$.Category}}/{{.}}.jpg" alt="{{.}}">
+            </a>
+        </div>
+        {{end}}
+    </div>
+</body>
+</html>
