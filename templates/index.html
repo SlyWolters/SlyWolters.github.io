@@ -11,7 +11,7 @@
 <body>
     <h1>Photo Gallery</h1>
 
-    <div class="gallery">
+    <div class="gallery {{.}}">
         {{range .}}
         <div>
             <h2>{{.}}</h2>
@@ -21,6 +21,7 @@
         </div>
         {{end}}
     </div>
+
 </body>
 
 </html>

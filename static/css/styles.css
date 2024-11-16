@@ -49,7 +49,7 @@ button:hover {
     color: #333;
 }
 
-/* Additional images gallery */
+/* General gallery layout */
 .gallery {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -68,17 +68,26 @@ button:hover {
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
+/* Default styling for gallery images (3:4 aspect ratio) */
 .gallery img {
     width: 100%;
     height: auto;
     object-fit: cover;
     object-position: center;
-    transition: transform 0.3s ease;
+    aspect-ratio: 3 / 4;
+    border-radius: 8px;
+}
+
+/* Category-specific styles for square images */
+.gallery.hats img, 
+.gallery.embroidery img {
+    aspect-ratio: 1 / 1; /* Square aspect ratio */
 }
 
 /* Hover effect for images */
 .gallery div:hover img {
     transform: scale(1.1);
+    transition: transform 0.3s ease;
 }
 
 /* Responsive design */
