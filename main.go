@@ -9,56 +9,90 @@ import (
 	"strings"
 )
 
-// Render the main index page with categories
-func indexHandler(w http.ResponseWriter, r *http.Request) {
-	imageDir := "./static/images/"
-	files, err := ioutil.ReadDir(imageDir)
+// Helper function to list directories
+func listDirectories(path string) ([]string, error) {
+	files, err := ioutil.ReadDir(path)
 	if err != nil {
-		http.Error(w, "Unable to read images directory", http.StatusInternalServerError)
-		return
+		return nil, err
 	}
 
-	var categories []string
+	var dirs []string
 	for _, file := range files {
 		if file.IsDir() {
-			categories = append(categories, file.Name())
+			dirs = append(dirs, file.Name())
 		}
 	}
-
-	tmpl, err := template.ParseFiles("templates/index.html")
-	if err != nil {
-		http.Error(w, "Template not found: "+err.Error(), http.StatusInternalServerError)
-		return
-	}
-
-	err = tmpl.Execute(w, categories)
-	if err != nil {
-		http.Error(w, "Template execution error: "+err.Error(), http.StatusInternalServerError)
-	}
+	return dirs, nil
 }
 
-// Render the category page showing items
-func categoryPageHandler(w http.ResponseWriter, r *http.Request) {
-	category := strings.TrimPrefix(r.URL.Path, "/category/")
-	categoryPath := "./static/images/" + category
-
-	files, err := ioutil.ReadDir(categoryPath)
+// Helper function to list files in a directory (excluding directories)
+func listFiles(path string, exclude []string) ([]string, error) {
+	files, err := ioutil.ReadDir(path)
 	if err != nil {
-		http.Error(w, "Unable to read category directory", http.StatusInternalServerError)
-		return
+		return nil, err
 	}
 
 	var items []string
 	for _, file := range files {
 		if !file.IsDir() {
-			itemName := strings.TrimSuffix(file.Name(), filepath.Ext(file.Name()))
-			items = append(items, itemName)
+			name := file.Name()
+			if !contains(exclude, name) {
+				items = append(items, strings.TrimSuffix(name, filepath.Ext(name)))
+			}
 		}
 	}
+	return items, nil
+}
 
-	tmpl, err := template.ParseFiles("templates/category.html")
+// Helper function to check if a slice contains a value
+func contains(slice []string, value string) bool {
+	for _, v := range slice {
+		if v == value {
+			return true
+		}
+	}
+	return false
+}
+
+// Generic function to render templates
+func renderTemplate(w http.ResponseWriter, tmpl string, data interface{}) {
+	tmplParsed, err := template.ParseFiles("templates/layout.html", "templates/"+tmpl+".html")
 	if err != nil {
 		http.Error(w, "Template not found: "+err.Error(), http.StatusInternalServerError)
+		return
+	}
+
+	err = tmplParsed.Execute(w, data)
+	if err != nil {
+		http.Error(w, "Template execution error: "+err.Error(), http.StatusInternalServerError)
+	}
+}
+
+// Index handler - Shows categories
+func indexHandler(w http.ResponseWriter, r *http.Request) {
+	categories, err := listDirectories("./static/images/")
+	if err != nil {
+		http.Error(w, "Unable to read images directory", http.StatusInternalServerError)
+		return
+	}
+
+	data := struct {
+		Title      string
+		Categories []string
+	}{
+		Title:      "Photo Gallery",
+		Categories: categories,
+	}
+
+	renderTemplate(w, "index", data)
+}
+
+// Category handler - Shows items in a category
+func categoryPageHandler(w http.ResponseWriter, r *http.Request) {
+	category := strings.TrimPrefix(r.URL.Path, "/category/")
+	items, err := listFiles("./static/images/"+category, nil)
+	if err != nil {
+		http.Error(w, "Unable to read category directory", http.StatusInternalServerError)
 		return
 	}
 
@@ -70,39 +104,27 @@ func categoryPageHandler(w http.ResponseWriter, r *http.Request) {
 		Items:    items,
 	}
 
-	err = tmpl.Execute(w, data)
-	if err != nil {
-		http.Error(w, "Template execution error: "+err.Error(), http.StatusInternalServerError)
-	}
+	renderTemplate(w, "category", data)
 }
 
-// Render item page for specific images
+// Item handler - Shows details for an item
 func itemPageHandler(w http.ResponseWriter, r *http.Request) {
 	parts := strings.Split(strings.TrimPrefix(r.URL.Path, "/item/"), "/")
 	if len(parts) < 2 {
 		http.Error(w, "Invalid path", http.StatusBadRequest)
 		return
 	}
-	category := parts[0]
-	item := parts[1]
+
+	category, item := parts[0], parts[1]
 	itemPath := "./static/images/" + category + "/" + item
 
-	// Read files in the item's folder
-	files, err := ioutil.ReadDir(itemPath)
+	images, err := listFiles(itemPath, []string{"thumbnail.jpg", "description.txt"})
 	if err != nil {
 		http.Error(w, "Unable to read item directory", http.StatusInternalServerError)
 		return
 	}
 
-	// Collect all images except for the thumbnail
-	var images []string
-	for _, file := range files {
-		if !file.IsDir() && file.Name() != "thumbnail.jpg" && file.Name() != "description.txt" {
-			images = append(images, file.Name())
-		}
-	}
-
-	// Read the description from description.txt
+	// Read description
 	descriptionPath := itemPath + "/description.txt"
 	descriptionBytes, err := ioutil.ReadFile(descriptionPath)
 	description := "No description available."
@@ -110,13 +132,6 @@ func itemPageHandler(w http.ResponseWriter, r *http.Request) {
 		description = string(descriptionBytes)
 	} else {
 		log.Printf("Warning: Unable to read description.txt for %s: %v", itemPath, err)
-	}
-
-	// Prepare data to send to the template
-	tmpl, err := template.ParseFiles("templates/item.html")
-	if err != nil {
-		http.Error(w, "Template not found: "+err.Error(), http.StatusInternalServerError)
-		return
 	}
 
 	data := struct {
@@ -131,29 +146,17 @@ func itemPageHandler(w http.ResponseWriter, r *http.Request) {
 		Images:      images,
 	}
 
-	err = tmpl.Execute(w, data)
-	if err != nil {
-		http.Error(w, "Template execution error: "+err.Error(), http.StatusInternalServerError)
-	}
+	renderTemplate(w, "item", data)
 }
 
-
-
-
 func main() {
-	// Serve the main page
 	http.HandleFunc("/", indexHandler)
-
-	// Serve category pages
 	http.HandleFunc("/category/", categoryPageHandler)
-
-	// Serve item pages
 	http.HandleFunc("/item/", itemPageHandler)
 
 	// Serve static files (like images and css)
 	http.Handle("/static/", http.StripPrefix("/static/", http.FileServer(http.Dir("static"))))
 
-	// Start the server
-	log.Println("Server started on http://localhost:8080")
-	log.Fatal(http.ListenAndServe(":8080", nil))
+	log.Println("Server started on :8181")
+	http.ListenAndServe(":8181", nil)
 }

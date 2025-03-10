@@ -1,18 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Photo Gallery</title>
-    <link rel="stylesheet" href="/static/css/styles.css">
-</head>
-
-<body>
+{{ define "content" }}
     <h1>Photo Gallery</h1>
 
-    <div class="gallery {{.}}">
-        {{range .}}
+    <div class="gallery">
+        {{range .Categories}}
         <div>
             <h2>{{.}}</h2>
             <a href="/category/{{.}}">
@@ -21,7 +11,4 @@
         </div>
         {{end}}
     </div>
-
-</body>
-
-</html>
+{{ end }}
