@@ -1,14 +1,24 @@
 {{ define "content" }}
-    <h1>Photo Gallery</h1>
+<main>
+    <section id="hero">
 
-    <div class="gallery">
-        {{range .Categories}}
-        <div>
-            <h2>{{.}}</h2>
-            <a href="/category/{{.}}">
-                <img src="/static/images/{{.}}.jpg" alt="{{.}}">
-            </a>
-        </div>
-        {{end}}
-    </div>
-{{ end }}
+    </section>
+
+
+
+    <section id="about">
+        <h2>Welcome to my webpage!</h2>
+        <p>
+            <br>
+            My name is Sly Wolters and I'm a textile artist currently based in Gothenburg, Sweden.
+            I specialize in creating unique and beautiful textile designs that are functional and aesthetically
+            pleasing.
+            Get to know me better. I hereby formally invite you to my portfolio to see some of my creations.
+        </p>
+    </section>
+
+</main>
+<footer>
+    <p>Copyright © 2023 Sly Portfolio</p>
+</footer>
+{{end}}

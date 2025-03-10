@@ -79,15 +79,52 @@ button:hover {
 }
 
 /* Category-specific styles for square images */
-.gallery.hats img, 
+.gallery.hats img,
 .gallery.embroidery img {
-    aspect-ratio: 1 / 1; /* Square aspect ratio */
+    aspect-ratio: 1 / 1;
+    /* Square aspect ratio */
 }
 
 /* Hover effect for images */
 .gallery div:hover img {
     transform: scale(1.1);
     transition: transform 0.3s ease;
+}
+
+
+header {
+	background-color: #333;
+	color: #fff;
+	padding: 20px;
+}
+
+nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+nav li {
+    display: inline-block;
+    margin-right: 20px;
+}
+
+nav ul li a {
+    color: inherit;
+    /* Use the default text color */
+    transition: color 0.2s ease-in-out;
+    /* Add a smooth transition effect */
+}
+
+/* Hover state */
+nav ul li a:hover {
+    color: #7B68EE;
+    /* Change to the desired color on hover */
+}
+
+nav a {
+    color: #fff;
+    text-decoration: none;
 }
 
 /* Responsive design */

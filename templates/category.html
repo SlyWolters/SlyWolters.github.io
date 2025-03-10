@@ -1,14 +1,14 @@
 {{ define "content" }}
-    <h1>{{.Category}} Gallery</h1>
-    <button onclick="window.history.back()">Back to Categories</button>
-    <div class="gallery {{$.Category}}">
-        {{range .Items}}
-        <div>
-            <h2>{{.}}</h2>
-            <a href="/item/{{$.Category}}/{{.}}">
-                <img src="/static/images/{{$.Category}}/{{.}}.jpg" alt="{{.}}">
-            </a>
-        </div>
-        {{end}}
+<h1>{{.Category}} Gallery</h1>
+<button onclick="window.history.back()">Back to Categories</button>
+<div class="gallery {{$.Category}}">
+    {{range .Items}}
+    <div>
+        <h2>{{.}}</h2>
+        <a href="/item/{{$.Category}}/{{.}}">
+            <img src="/static/images/{{$.Category}}/{{.}}.jpg" alt="{{.}}">
+        </a>
     </div>
+    {{end}}
+</div>
 {{ end }}

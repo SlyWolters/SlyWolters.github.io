@@ -2,16 +2,16 @@ package main
 
 import (
 	"html/template"
-	"io/ioutil"
 	"log"
 	"net/http"
+	"os"
 	"path/filepath"
 	"strings"
 )
 
 // Helper function to list directories
 func listDirectories(path string) ([]string, error) {
-	files, err := ioutil.ReadDir(path)
+	files, err := os.ReadDir(path)
 	if err != nil {
 		return nil, err
 	}
@@ -27,7 +27,7 @@ func listDirectories(path string) ([]string, error) {
 
 // Helper function to list files in a directory (excluding directories)
 func listFiles(path string, exclude []string) ([]string, error) {
-	files, err := ioutil.ReadDir(path)
+	files, err := os.ReadDir(path)
 	if err != nil {
 		return nil, err
 	}
@@ -66,10 +66,23 @@ func renderTemplate(w http.ResponseWriter, tmpl string, data interface{}) {
 	if err != nil {
 		http.Error(w, "Template execution error: "+err.Error(), http.StatusInternalServerError)
 	}
+	file, err := os.Create("static_page.html")
+	if err != nil {
+		log.Fatal(err)
+	}
+	defer file.Close()
+
+	// Execute template and write to file
+	err = tmplParsed.Execute(file, data)
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	log.Println("Static HTML page generated successfully")
 }
 
 // Index handler - Shows categories
-func indexHandler(w http.ResponseWriter, r *http.Request) {
+func portfolioHandler(w http.ResponseWriter, r *http.Request) {
 	categories, err := listDirectories("./static/images/")
 	if err != nil {
 		http.Error(w, "Unable to read images directory", http.StatusInternalServerError)
@@ -84,7 +97,7 @@ func indexHandler(w http.ResponseWriter, r *http.Request) {
 		Categories: categories,
 	}
 
-	renderTemplate(w, "index", data)
+	renderTemplate(w, "portfolio", data)
 }
 
 // Category handler - Shows items in a category
@@ -99,9 +112,11 @@ func categoryPageHandler(w http.ResponseWriter, r *http.Request) {
 	data := struct {
 		Category string
 		Items    []string
+		Title    string
 	}{
 		Category: category,
 		Items:    items,
+		Title:    category,
 	}
 
 	renderTemplate(w, "category", data)
@@ -126,7 +141,7 @@ func itemPageHandler(w http.ResponseWriter, r *http.Request) {
 
 	// Read description
 	descriptionPath := itemPath + "/description.txt"
-	descriptionBytes, err := ioutil.ReadFile(descriptionPath)
+	descriptionBytes, err := os.ReadFile(descriptionPath)
 	description := "No description available."
 	if err == nil {
 		description = string(descriptionBytes)
@@ -139,21 +154,57 @@ func itemPageHandler(w http.ResponseWriter, r *http.Request) {
 		Item        string
 		Description string
 		Images      []string
+		Title       string
 	}{
 		Category:    category,
 		Item:        item,
 		Description: description,
 		Images:      images,
+		Title:       item,
 	}
 
 	renderTemplate(w, "item", data)
 }
 
+func aboutHandler(w http.ResponseWriter, r *http.Request) {
+
+	data := struct {
+		Title string
+	}{
+		Title: "about",
+	}
+
+	renderTemplate(w, "about", data)
+}
+
+func contactHandler(w http.ResponseWriter, r *http.Request) {
+
+	data := struct {
+		Title string
+	}{
+		Title: "contact",
+	}
+
+	renderTemplate(w, "contact", data)
+}
+
+func indexHandler(w http.ResponseWriter, r *http.Request) {
+
+	data := struct {
+		Title string
+	}{
+		Title: "index",
+	}
+
+	renderTemplate(w, "index", data)
+}
+
 func main() {
 	http.HandleFunc("/", indexHandler)
+	http.HandleFunc("/portfolio", portfolioHandler)
 	http.HandleFunc("/category/", categoryPageHandler)
 	http.HandleFunc("/item/", itemPageHandler)
-
+	http.HandleFunc("/about", aboutHandler)
 	// Serve static files (like images and css)
 	http.Handle("/static/", http.StripPrefix("/static/", http.FileServer(http.Dir("static"))))
 
